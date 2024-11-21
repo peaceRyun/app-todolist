@@ -1,26 +1,17 @@
-import React from 'react';
+'use client';
 
-const TodoList = () => {
+import React from 'react';
+import TodoItem from './TodoItem';
+
+const TodoList = ({ mocTodoData }) => {
     return (
         <div>
             <h2>할 일 목록</h2>
             <input type='text' />
             <ul>
-                <li>
-                    <input type='checkbox' /> <p>고양이 츄르 주기</p>
-                    <span>2024.04.22</span>
-                    <button>삭제</button>
-                </li>
-                <li>
-                    <input type='checkbox' /> <p>덩오줌 치우기</p>
-                    <span>2024.04.22</span>
-                    <button>삭제</button>
-                </li>
-                <li>
-                    <input type='checkbox' /> <p>고양이 놀아주기</p>
-                    <span>2024.04.22</span>
-                    <button>삭제</button>
-                </li>
+                {mocTodoData.map((item) => (
+                    <TodoItem key={item.id} {...item} />
+                ))}
             </ul>
         </div>
     );
