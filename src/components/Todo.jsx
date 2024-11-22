@@ -9,7 +9,6 @@ import { mockTodoData } from '@/data/todoData';
 const Todo = () => {
     const [todos, setTodos] = useState(mockTodoData);
 
-    //할 일 추가하는 함수
     const addTodo = (task) => {
         const newTodo = {
             id: todos.length + 1,
@@ -20,7 +19,6 @@ const Todo = () => {
         setTodos([newTodo, ...todos]);
     };
 
-    //완료 표시 함수
     const onUpdate = (id) => {
         setTodos(
             todos.map((todo) => {
@@ -29,7 +27,6 @@ const Todo = () => {
         );
     };
 
-    //할 일 삭제 함수
     const onDelete = (id) => {
         setTodos(todos.filter((todo) => todo.id !== id));
     };
