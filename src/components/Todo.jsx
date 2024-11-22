@@ -11,18 +11,30 @@ const Todo = () => {
 
     //할 일 추가하는 함수
     const addTodo = (task) => {
-        setTodos([
-            ...todos,
-            { id: todos.length + 1, isDone: false, task: task, createDate: new Date().toLocaleDateString() },
-        ]);
+        const newTodo = {
+            id: todos.length + 1,
+            isDone: false,
+            task: task,
+            createDate: new Date().toLocaleDateString(),
+        };
+        setTodos([newTodo, ...todos]);
+    };
+
+    //완료 표시 함수
+    const onUpdate = (id) => {
+        setTodos(
+            todos.map((todo) => {
+                return todo.id === id ? { ...todo, isDone: !todo.isDone } : todo;
+            })
+        );
     };
 
     return (
-        <>
+        <div className='flex flex-col gap-4 p-8'>
             <TodoHd />
             <TodoEditor addTodo={addTodo} />
-            <TodoList mocTodoData={todos} />
-        </>
+            <TodoList mocTodoData={todos} onUpdate={onUpdate} />
+        </div>
     );
 };
 
