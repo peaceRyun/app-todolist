@@ -29,11 +29,16 @@ const Todo = () => {
         );
     };
 
+    //할 일 삭제 함수
+    const onDelete = (id) => {
+        setTodos(todos.filter((todo) => todo.id !== id));
+    };
+
     return (
         <div className='flex flex-col gap-4 p-8'>
             <TodoHd />
             <TodoEditor addTodo={addTodo} />
-            <TodoList mocTodoData={todos} onUpdate={onUpdate} />
+            <TodoList mocTodoData={todos} onUpdate={onUpdate} onDelete={onDelete} />
         </div>
     );
 };

@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import React from 'react';
 
-const TodoItem = ({ id, task, createDate, isDone, onUpdate }) => {
+const TodoItem = ({ id, task, createDate, isDone, onUpdate, onDelete }) => {
     return (
         <li key={id} className='flex gap-2 items-center'>
             <input
@@ -15,7 +15,13 @@ const TodoItem = ({ id, task, createDate, isDone, onUpdate }) => {
             />
             <strong className={classNames('py-2 text-lg', isDone ? 'line-through' : '')}>{task}</strong>
             <span className='ml-auto text-sm text-gray-400'>{createDate}</span>
-            <button>삭제</button>
+            <button
+                onClick={() => {
+                    onDelete(id);
+                }}
+            >
+                삭제
+            </button>
         </li>
     );
 };

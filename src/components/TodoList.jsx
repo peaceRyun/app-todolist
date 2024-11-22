@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import TodoItem from './TodoItem';
 
-const TodoList = ({ mocTodoData, onUpdate }) => {
+const TodoList = ({ mocTodoData, onUpdate, onDelete }) => {
     const [search, setSearch] = useState('');
 
     const filteredTodos = () => {
@@ -23,7 +23,10 @@ const TodoList = ({ mocTodoData, onUpdate }) => {
             />
             <ul>
                 {filteredTodos().map(
-                    (item) => (console.log(item), (<TodoItem key={item.id} {...item} onUpdate={onUpdate} />))
+                    (item) => (
+                        console.log(item),
+                        (<TodoItem key={item.id} {...item} onUpdate={onUpdate} onDelete={onDelete} />)
+                    )
                 )}
             </ul>
         </div>
