@@ -1,13 +1,14 @@
 'use client';
 
+import { ThemeContext } from '@/app/layout';
 import classNames from 'classnames';
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 
 const TodoEditor = ({ addTodo }) => {
     const [task, setTask] = useState('');
-
     const inputRef = useRef();
+    const theme = useContext(ThemeContext);
 
     const onSubmit = () => {
         if (!task) return;
@@ -47,6 +48,7 @@ const TodoEditor = ({ addTodo }) => {
                         onKeyDown={onKeyDown}
                         onChange={onChangeTask}
                         placeholder='할 일을 입력하세요.'
+                        className={classNames('p-3 w-full', theme.input, `text-${theme.white} bg-${theme.black}`)}
                     />
                     <button onClick={onCloseKey} className='absolute top-1/2 right-1 -translate-y-1/2'>
                         <IoMdClose />

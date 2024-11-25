@@ -7,7 +7,7 @@ import { ThemeContext } from './layout';
 export default function Home() {
     const theme = useContext(ThemeContext);
     return (
-        <div className={theme.background}>
+        <div className={(theme.background, theme.text)}>
             <Todo />
         </div>
     );
