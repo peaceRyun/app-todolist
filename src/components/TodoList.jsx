@@ -2,12 +2,15 @@
 
 import React, { useState } from 'react';
 import TodoItem from './TodoItem';
+import { useTodo } from '@/contexts/TodoContext';
 
-const TodoList = ({ mocTodoData, onUpdate, onDelete }) => {
+const TodoList = () => {
     const [search, setSearch] = useState('');
 
+    const { onUpdate, onDelete, todos } = useTodo();
+
     const filteredTodos = () => {
-        return mocTodoData.filter((item) => item.task.toLowerCase().includes(search.toLowerCase()));
+        return todos.filter((item) => item.task.toLowerCase().includes(search.toLowerCase()));
     };
 
     return (

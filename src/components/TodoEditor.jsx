@@ -1,14 +1,16 @@
 'use client';
 
 import { ThemeContext } from '@/app/layout';
+import { useTodo } from '@/contexts/TodoContext';
 import classNames from 'classnames';
 import React, { useContext, useRef, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 
-const TodoEditor = ({ addTodo }) => {
+const TodoEditor = () => {
     const [task, setTask] = useState('');
     const inputRef = useRef();
     const theme = useContext(ThemeContext);
+    const { addTodo } = useTodo();
 
     const onSubmit = () => {
         if (!task) return;
