@@ -1,12 +1,26 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import TodoHd from './TodoHd';
 import TodoEditor from './TodoEditor';
 import TodoList from './TodoList';
+import { setTodos } from '@/states/todoReducer';
 
 const Todo = () => {
-    const [todos, setTodos] = useState([]);
+    // const [todos, setTodos] = useState([]);
+    const [todos, dispatch] = useReducer(setTodos, []);
+
+    const addTodo = (task) => {
+        dispatch({ type: 'ADD_TODO', payload: { task } });
+    };
+
+    const onUpdate = (id) => {
+        dispatch({ type: 'UPDATE_TODO', payload: { id } });
+    };
+
+    const onDelete = (id) => {
+        dispatch({ type: 'DELETE_TODO', payload: { id } });
+    };
 
     useEffect(() => {
         const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
@@ -20,27 +34,9 @@ const Todo = () => {
     }),
         [todos];
 
-    const addTodo = (task) => {
-        const newTodo = {
-            id: todos.length + 1,
-            isDone: false,
-            task: task,
-            createDate: new Date().toLocaleDateString(),
-        };
-        setTodos([newTodo, ...todos]);
-    };
-
-    const onUpdate = (id) => {
-        setTodos(
-            todos.map((todo) => {
-                return todo.id === id ? { ...todo, isDone: !todo.isDone } : todo;
-            })
-        );
-    };
-
-    const onDelete = (id) => {
-        setTodos(todos.filter((todo) => todo.id !== id));
-    };
+    // const onDelete = (id) => {
+    //     setTodos(todos.filter((todo) => todo.id !== id));
+    // };
 
     return (
         <div className='flex flex-col gap-4 p-8'>
