@@ -1,6 +1,14 @@
+'use client';
+
 import Todo from '@/components/Todo';
-import Image from 'next/image';
+import { useContext } from 'react';
+import { ThemeContext } from './layout';
 
 export default function Home() {
-    return <Todo />;
+    const theme = useContext(ThemeContext);
+    return (
+        <div className={theme.background}>
+            <Todo />
+        </div>
+    );
 }
