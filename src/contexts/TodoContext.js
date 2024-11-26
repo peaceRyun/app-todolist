@@ -4,12 +4,9 @@ import { ADD_TODO, DELETE_TODO, setTodos, UPDATE_TODO } from '@/states/todoReduc
 
 const { createContext, useContext, useReducer, useEffect } = require('react');
 
-//생성
 const TodoContext = createContext();
 
-//공급
 export const TodoProvider = ({ children }) => {
-    // 로컬 스토리지 키 선언
     const LOCAL_STORAGE_KEY = 'my-todo-app-todos';
     const [todos, dispatch] = useReducer(setTodos, []);
 
@@ -28,7 +25,6 @@ export const TodoProvider = ({ children }) => {
     useEffect(() => {
         const savedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
 
-        // setTodos(savedTodos);
         savedTodos.forEach((todo) => {
             return dispatch({
                 type: ADD_TODO,
